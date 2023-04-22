@@ -47,7 +47,7 @@ const loadquestion = () => {
 const submitQuiz = () => {
     const data = questions[index];
     const ans = getAnswer()
-    if (ans === data.correct) {
+    if (ans == data.correct) {
         right++;
     } else {
         wrong++;
@@ -58,13 +58,15 @@ const submitQuiz = () => {
 }
 
 const getAnswer = () => {
+    let answer;
     optionInputs.forEach(
         (input) => {
             if (input.checked) {
-                return input.value;
+                answer = input.value;
             }
         }
     )
+    return answer;
 }
 
 const reset = () => {
@@ -76,7 +78,12 @@ const reset = () => {
 }
 
 const endQuiz = () => {
-
+    document.getElementById("box").innerHTML = `
+    <div style="text-align:center">
+        <h2> Thank you for playing the Quiz </h2>
+        <h2> ${right} / ${total} are correct </h2>
+        </div>
+    `
 }
 
 loadquestion();
